@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SistOtica.Models.Client.ClientModel>
+@{
+    ViewData["Title"] = "Clientes";
+}
+<h1>Clientes</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber.First().PhoneNumber)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null || !Model.Any())
+        {
+            <tr>
+                <td>‎ </td> <!--Caracter invisível-->
+                <td>‎ </td>
+                <td>‎ </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cpf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber.FirstOrDefault().PhoneNumber)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Client" asp-action="Create" class="btn btn-primary">Novo Cliente</a>
