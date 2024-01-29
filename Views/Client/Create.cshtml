@@ -22,11 +22,16 @@
                 <input asp-for="Cpf" class="form-control" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+            <div>
+                <div class="form-group" id="phoneNumberField">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber[0]" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <a class="btn btn-primary" onclick="addPhoneNumber()"> + </a>
             </div>
+
             <div class="form-group">
                 <label asp-for="Rg" class="control-label"></label>
                 <input asp-for="Rg" class="form-control" />
@@ -36,6 +41,8 @@
                 <input asp-for="BornDate" class="form-control" type="date" />
                 <span asp-validation-for="BornDate" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="FatherName" class="control-label"></label>
                 <input asp-for="FatherName" class="form-control" />
@@ -48,6 +55,7 @@
                 <label asp-for="SpouseName" class="control-label"></label>
                 <input asp-for="SpouseName" class="form-control" />
             </div>
+
             <div class="form-group">
                 <label asp-for="EmailAddress" class="control-label"></label>
                 <input asp-for="EmailAddress" class="form-control" />
@@ -60,6 +68,8 @@
                 <label asp-for="Ocupation" class="control-label"></label>
                 <input asp-for="Ocupation" class="form-control" />
             </div>
+
+
             <div class="form-group">
                 <label asp-for="Street" class="control-label"></label>
                 <input asp-for="Street" class="form-control" />
@@ -84,6 +94,21 @@
                 <label asp-for="AddressComplement" class="control-label"></label>
                 <input asp-for="AddressComplement" class="form-control" />
             </div>
+            <div>
+                <h6 id="referenceNumeration">1º Referencia</h6>
+                <div class="form-group" id="referenceNameField">
+                    <label asp-for="ReferenceName" class="control-label"></label>
+                    <input asp-for="ReferenceName[0]" class="form-control" />
+                </div>
+                <div class="form-group" id="referencePhoneField">
+                    <label asp-for="ReferencePhone" class="control-label"></label>
+                    <input asp-for="ReferencePhone[0]" class="form-control" />
+                </div>
+                <a class="btn btn-primary" onclick="addReference()"> + </a>
+            </div>
+            
+
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Negativated" /> @Html.DisplayNameFor(model => model.Negativated)
@@ -93,10 +118,12 @@
                 <label asp-for="Observation" class="control-label"></label>
                 <input asp-for="Observation" class="form-control" />
             </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+        </form> <!--Create form-->
     </div>
 </div>
 

@@ -46,8 +46,6 @@ namespace SistOtica.Controllers
             if(ModelState.IsValid)
             {
                 ClientModel client = new ClientModel();
-                ClientContact contact = new ClientContact();
-
                 client.Id = clientView.Id;
                 client.Name = clientView.Name;
                 client.Cpf = clientView.Cpf;
@@ -67,10 +65,20 @@ namespace SistOtica.Controllers
                 client.AddressComplement = clientView.AddressComplement;
                 client.Negativated = clientView.Negativated;
                 client.Observation = clientView.Observation;
+               
+                var contacts  = new List<ClientContact>();
 
-                contact.PhoneNumber = clientView.PhoneNumber;
 
-                _clientRepository.Create(client, contact);
+                for (int i = 0; i < clientView.PhoneNumber.Count; i++)
+                {
+                    ClientContact contact = new ClientContact();
+                    contact.ClientId = client.Id;
+                    contact.PhoneNumber = clientView.PhoneNumber[i];
+                    contacts.Add(contact);
+                }
+                client.PhoneNumber = contacts;  
+
+                _clientRepository.Create(client);
                 return RedirectToAction("Index");
             }
 

@@ -6,32 +6,31 @@ namespace SistOtica.Repository.Cliente
 {
     public class ClientRepository : IClientRepository
     {
-        private readonly AppDbContext _appContext;
+        private readonly AppDbContext _context;
          
         public ClientRepository(AppDbContext appDbContext)
         {
-            this._appContext = appDbContext;
+            this._context = appDbContext;
         }
 
         public List<ClientModel> GetAll()
         {
-           return _appContext.Clients.Include(c => c.PhoneNumber).ToList();
+           return _context.Clients.Include(c => c.PhoneNumber).ToList();
         }
 
-        public ClientModel Create(ClientModel client, ClientContact contact)
+        public ClientModel Create(ClientModel client)
         {
             //persistir no banco
-            _appContext.Clients.Add(client);
-            _appContext.SaveChanges();
-
-            contact.ClientId = client.Id;
-            _appContext.Contacts.Add(contact);
-            
-
-            _appContext.SaveChanges();
+            _context.Clients.Add(client);
+            _context.SaveChanges();
             return client;
         }
 
-        
+        //public ClientContact CreateContact(ClientContact contact)
+        //{
+        //    _context.Contacts.Add(contact);
+        //    _context.SaveChanges();
+        //    return contact;
+        //}
     }
 }

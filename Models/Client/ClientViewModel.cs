@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistOtica.Models.Client
 {
@@ -64,7 +65,14 @@ namespace SistOtica.Models.Client
 
         [Required(ErrorMessage = "*")]
         [DisplayName("Telefone")]
-        public string PhoneNumber { get; set; }
+        [NotMapped]
+        public List<string> PhoneNumber { get; set; }
+
+        [DisplayName("Nome")]
+        public List<string> ReferenceName { get; set;}
+
+        [DisplayName("Telefone")]
+        public List<string> ReferencePhone { get; set; }
 
     }
 }
