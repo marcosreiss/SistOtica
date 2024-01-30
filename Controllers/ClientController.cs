@@ -68,7 +68,6 @@ namespace SistOtica.Controllers
                
                 var contacts  = new List<ClientContact>();
 
-
                 for (int i = 0; i < clientView.PhoneNumber.Count; i++)
                 {
                     ClientContact contact = new ClientContact();
@@ -77,6 +76,14 @@ namespace SistOtica.Controllers
                     contacts.Add(contact);
                 }
                 client.PhoneNumber = contacts;  
+
+                var references = new List<ClientReferences>();
+
+                for(int i = 0; i < clientView.ReferenceName.Count; i++)
+                {
+                    
+
+                }
 
                 _clientRepository.Create(client);
                 return RedirectToAction("Index");
