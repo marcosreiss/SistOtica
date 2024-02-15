@@ -69,9 +69,11 @@ namespace SistOtica.Models.Client
         public List<string> PhoneNumber { get; set; }
 
         [DisplayName("Nome")]
+        [NotMapped]
         public List<string> ReferenceName { get; set;}
 
         [DisplayName("Telefone")]
+        [NotMapped]
         public List<string> ReferencePhone { get; set; }
 
     }

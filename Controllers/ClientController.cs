@@ -38,7 +38,7 @@ namespace SistOtica.Controllers
         public IActionResult Details()
         {
             return View();
-        }
+        }   
 
         [HttpPost]
         public IActionResult Create(ClientViewModel clientView) 
@@ -81,9 +81,13 @@ namespace SistOtica.Controllers
 
                 for(int i = 0; i < clientView.ReferenceName.Count; i++)
                 {
-                    
-
+                    ClientReferences clientReferences = new ClientReferences();
+                    clientReferences.ClientId = client.Id;
+                    clientReferences.Name = clientView.ReferenceName[i];
+                    clientReferences.PhoneNumber = clientView.PhoneNumber[i];
+                    references.Add(clientReferences);
                 }
+                client.References = references;
 
                 _clientRepository.Create(client);
                 return RedirectToAction("Index");
